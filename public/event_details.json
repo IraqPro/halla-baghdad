@@ -1,0 +1,287 @@
+{
+  "event": {
+    "name": {
+      "arabic": "يوم النظافة العام 2026",
+      "english": "Public Cleanliness Day 2026"
+    },
+    "tagline": {
+      "arabic": "أكبر حدث مجتمعي سنوي على مستوى العراق",
+      "english": "The largest annual community event in Iraq"
+    },
+    "description": {
+      "arabic": "يُعد يوم النظافة العام مناسبة مجتمعية وإنسانية مهمة تهدف إلى ترسيخ ثقافة المسؤولية الجماعية، وتعزيز الوعي بأهمية الحفاظ على البيئة والممتلكات العامة، باعتبار النظافة سلوكًا حضاريًا يعكس وعي المجتمع وتقدمه",
+      "english": "Public Cleanliness Day is an important community and humanitarian occasion aimed at establishing a culture of collective responsibility, raising awareness about the importance of preserving the environment and public property, considering cleanliness as a civilized behavior that reflects society's awareness and progress"
+    },
+    "date": {
+      "start": "2026-02-06",
+      "end": "2026-02-07",
+      "timing_note": {
+        "arabic": "بداية عطلة نصف السنة الدراسية",
+        "english": "Beginning of mid-year school holiday"
+      }
+    },
+    "location": {
+      "arabic": "ساحة الاحتفالات الكبرى",
+      "english": "Grand Celebrations Square",
+      "city": "Baghdad",
+      "country": "Iraq"
+    },
+    "organizers": [
+      {
+        "name": "هلة بغداد",
+        "english": "Hala Baghdad"
+      },
+      {
+        "name": "أمانة بغداد",
+        "english": "Mayoralty of Baghdad"
+      },
+      {
+        "name": "Holo Mix",
+        "english": "Holo Mix"
+      }
+    ]
+  },
+  "activities": [
+    {
+      "id": 1,
+      "name": {
+        "arabic": "مسيرة البلديات بغداد الكبرى",
+        "english": "Greater Baghdad Municipalities March"
+      },
+      "description": {
+        "arabic": "بمشاركة 14 بلدية بجميع كوادر البلدية وجميع آلياتها الخدمية ستنطلق أكبر مسيرة منظمة على مستوى العراق",
+        "english": "With the participation of 14 municipalities with all municipal staff and all their service vehicles, the largest organized march in Iraq will be launched"
+      },
+      "details": {
+        "participating_municipalities": 14,
+        "includes": [
+          "Municipal staff",
+          "Service vehicles",
+          "Equipment"
+        ]
+      },
+      "type": "parade"
+    },
+    {
+      "id": 2,
+      "name": {
+        "arabic": "ماراثون هلة بغداد - النسخة الثالثة",
+        "english": "Hala Baghdad Marathon - Third Edition"
+      },
+      "description": {
+        "arabic": "مراثون هلة بغداد هو فعالية رياضية مجتمعية تهدف إلى تعزيز ثقافة الرياضة ونمط الحياة الصحي، وترسيخ صورة بغداد كمدينة نابضة بالحياة وقادرة على تنظيم فعاليات نوعية بمعايير حديثة",
+        "english": "Hala Baghdad Marathon is a community sports event aimed at promoting sports culture and healthy lifestyle, establishing Baghdad's image as a vibrant city capable of organizing quality events with modern standards"
+      },
+      "type": "marathon",
+      "edition": 3,
+      "features_2026": {
+        "arabic": "ستكون هذه النسخة مختلفة عن النسخ السابقة حيث ستكون من أجمل نسخ ماراثون هلة بغداد ليس مجرد جري ستكون هناك عوائق وتحديات على طول المسار وستكون حفلة بحضور فنان عراقي كبير لتكريم الفائزين",
+        "english": "This edition will be different from previous editions, one of the most beautiful Hala Baghdad marathon editions, not just running - there will be obstacles and challenges along the course, with a celebration featuring a prominent Iraqi artist to honor the winners"
+      },
+      "prizes": {
+        "main_prize": "BYD Seal car"
+      },
+      "previous_editions": [
+        {
+          "edition": 1,
+          "year": 2024,
+          "date": "2024-11-11",
+          "participants": 2600,
+          "distance_km": 5,
+          "location": {
+            "arabic": "ساحة الاحتفالات",
+            "english": "Celebrations Square"
+          },
+          "highlights": [
+            "Participants from most Iraqi provinces",
+            "Foreign tourist participants"
+          ]
+        },
+        {
+          "edition": 2,
+          "year": 2025,
+          "date": "2025-10-03",
+          "participants": 3120,
+          "distance_km": 6,
+          "location": {
+            "arabic": "ساحة الاحتفالات",
+            "english": "Celebrations Square"
+          },
+          "highlights": [
+            "Participants from most Iraqi provinces",
+            "Foreign tourist participants",
+            "Prize of 5,000,000 IQD"
+          ]
+        }
+      ],
+      "media_coverage": {
+        "description": {
+          "arabic": "حظي مراثون هلة بغداد بتغطية إعلامية واسعة عبر القنوات الفضائية، والمواقع الإخبارية، ومنصات التواصل الاجتماعي، مع تفاعل كبير من الجمهور والمؤثرين",
+          "english": "Hala Baghdad Marathon received wide media coverage through satellite channels, news websites, and social media platforms, with great interaction from the public and influencers"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "name": {
+        "arabic": "بطولة هلة بغداد الكيوكوشن كاي",
+        "english": "Hala Baghdad Kyokushin Kai Championship"
+      },
+      "description": {
+        "arabic": "بطولة نخبوية للمحترفين الحاصلين على كأس العالم والسيا والعرب",
+        "english": "Elite championship for professionals who have won World, Asian, and Arab cups"
+      },
+      "type": "martial_arts",
+      "sport": "Kyokushin Karate",
+      "level": "Professional",
+      "eligibility": [
+        "World Cup winners",
+        "Asian Cup winners",
+        "Arab Cup winners"
+      ]
+    },
+    {
+      "id": 4,
+      "name": {
+        "arabic": "مسابقة أفضل صانع محتوى اجتماعي وتوعوي لسنة 2025",
+        "english": "Best Social and Awareness Content Creator Competition 2025"
+      },
+      "description": {
+        "arabic": "ستكون بنظام التصويت الالكتروني من خلال متابعين صانع المحتوى نفسه ومعرفة مقبوليته في المجتمع وتأثيره وإنجازاته بمشاركة أكثر من 50 صانع محتوى",
+        "english": "Will use electronic voting system through the content creator's own followers to assess their acceptance in society, their influence and achievements, with participation of more than 50 content creators"
+      },
+      "type": "competition",
+      "category": "content_creation",
+      "participants_count": "50+",
+      "voting_system": "electronic",
+      "criteria": [
+        "Social acceptance",
+        "Community impact",
+        "Achievements"
+      ]
+    },
+    {
+      "id": 5,
+      "name": {
+        "arabic": "حملة زراعة عشرة آلاف شجرة عن طريق القلم البيئي",
+        "english": "Campaign to Plant Ten Thousand Trees via Eco-Pen"
+      },
+      "description": {
+        "arabic": "كجزء من حملتنا البيئية المصاحبة للماراثون، سنقوم بتوزيع أقلام مبتكرة تحتوي على كبسولات بذور على المشاركين والجمهور. هذا القلم لا يقتصر على كونه أداة للكتابة فحسب، بل يمثل مبادرة عملية لتعزيز الزراعة والوعي البيئي بين المواطنين",
+        "english": "As part of our environmental campaign accompanying the marathon, we will distribute innovative pens containing seed capsules to participants and the audience. This pen is not just a writing tool, but represents a practical initiative to promote agriculture and environmental awareness among citizens"
+      },
+      "type": "environmental_campaign",
+      "target": {
+        "trees_to_plant": 10000,
+        "method": "eco_pen_distribution"
+      },
+      "eco_pen_concept": {
+        "arabic": "كيفية العمل: بعد الانتهاء من استخدام القلم، يمكن فتح كبسولة البذور وزراعتها مباشرة في التربة، مما يساهم في زراعة الأشجار وتشجيع الممارسات البيئية المستدامة",
+        "english": "How it works: After finishing using the pen, you can open the seed capsule and plant it directly in the soil, contributing to tree planting and encouraging sustainable environmental practices"
+      },
+      "innovation_note": {
+        "arabic": "الابتكار: تعد هذه الطريقة أول تجربة في العراق لاستخدام أدوات يومية ذات وظائف مزدوجة: الكتابة وزراعة الأشجار",
+        "english": "Innovation: This method is the first experiment in Iraq to use daily tools with dual functions: writing and tree planting"
+      }
+    },
+    {
+      "id": 6,
+      "name": {
+        "arabic": "حفلة تتويج الفائزين",
+        "english": "Winners Coronation Ceremony"
+      },
+      "description": {
+        "arabic": "ستكون حفلة تتويج الفائزين في اليوم الثاني بحضور جماهيري واسع ويحييها فنان عراقي كبير وسيكون أكبر إطلاق ألعاب نارية",
+        "english": "The winners coronation ceremony will be on the second day with large audience attendance, hosted by a prominent Iraqi artist, featuring the largest fireworks display"
+      },
+      "date": "2026-02-07",
+      "type": "ceremony",
+      "features": [
+        "Celebrity Iraqi artist performance",
+        "Large fireworks display",
+        "Winners awards"
+      ]
+    }
+  ],
+  "media_partners": {
+    "satellite_channels": [
+      "الشرقية",
+      "عراقية",
+      "هنا بغداد",
+      "السومرية",
+      "UTV",
+      "دجلة",
+      "iNEWS",
+      "الرشيد",
+      "النجباء",
+      "الفلوجة"
+    ],
+    "magazines": [
+      "B Magazine",
+      "نجوم العراق"
+    ],
+    "participants_types": [
+      "المؤثرين",
+      "صناع المحتوى",
+      "الفنانين",
+      "الرياضيين"
+    ]
+  },
+  "objectives": [
+    {
+      "arabic": "ترسيخ ثقافة المسؤولية الجماعية",
+      "english": "Establishing a culture of collective responsibility"
+    },
+    {
+      "arabic": "تعزيز الوعي بأهمية الحفاظ على البيئة والممتلكات العامة",
+      "english": "Raising awareness about the importance of preserving the environment and public property"
+    },
+    {
+      "arabic": "تعزيز ثقافة الرياضة ونمط الحياة الصحي",
+      "english": "Promoting sports culture and healthy lifestyle"
+    },
+    {
+      "arabic": "ترسيخ صورة بغداد كمدينة نابضة بالحياة",
+      "english": "Establishing Baghdad's image as a vibrant city"
+    },
+    {
+      "arabic": "تعزيز الوعي البيئي",
+      "english": "Enhancing environmental awareness"
+    }
+  ],
+  "themes": [
+    "cleanliness",
+    "sports",
+    "community",
+    "environment",
+    "culture",
+    "media",
+    "youth_engagement"
+  ],
+  "target_audience": {
+    "arabic": "مختلف فئات المجتمع",
+    "english": "Various segments of society"
+  },
+  "metadata": {
+    "source_document": "Presentation.pdf",
+    "total_pages": 14,
+    "language": "Arabic",
+    "parsed_date": "2026-01-10",
+    "brands": [
+      {
+        "name": "هلة بغداد",
+        "english": "Hala Baghdad",
+        "type": "event_brand"
+      },
+      {
+        "name": "Holo Mix",
+        "type": "production_company"
+      },
+      {
+        "name": "أمانة بغداد",
+        "english": "Mayoralty of Baghdad",
+        "type": "government_partner"
+      }
+    ]
+  }
+}
