@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Leaf, PenTool, TreeDeciduous, Lightbulb, ArrowLeft } from "lucide-react";
+import { Leaf, PenTool, TreeDeciduous, ArrowLeft, Lightbulb } from "lucide-react";
 import { Container } from "@/components/common/container";
 import { SectionHeader } from "@/components/common/section-header";
 import { GlassCard } from "@/components/common/glass-card";
@@ -31,6 +31,18 @@ const steps = [
   },
 ];
 
+// Pre-generated leaf animation values
+const leafAnimations = [
+  { x: 12, duration: 18, delay: 2 },
+  { x: 45, duration: 22, delay: 5 },
+  { x: 78, duration: 16, delay: 8 },
+  { x: 23, duration: 20, delay: 1 },
+  { x: 56, duration: 24, delay: 6 },
+  { x: 89, duration: 17, delay: 3 },
+  { x: 34, duration: 21, delay: 9 },
+  { x: 67, duration: 19, delay: 4 },
+];
+
 export function EcoPenSection({ ecoPen }: EcoPenSectionProps) {
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden">
@@ -39,24 +51,24 @@ export function EcoPenSection({ ecoPen }: EcoPenSectionProps) {
       
       {/* Floating Leaves Animation */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
+        {leafAnimations.map((leaf, i) => (
           <motion.div
             key={i}
             className="absolute text-primary/20"
             initial={{ 
-              x: Math.random() * 100 + "%", 
+              x: `${leaf.x}%`, 
               y: -20,
               rotate: 0 
             }}
             animate={{ 
               y: "120vh",
               rotate: 360,
-              x: `calc(${Math.random() * 100}% + ${Math.sin(i) * 50}px)`
+              x: `calc(${leaf.x}% + ${Math.sin(i) * 50}px)`
             }}
             transition={{
-              duration: Math.random() * 10 + 15,
+              duration: leaf.duration,
               repeat: Infinity,
-              delay: Math.random() * 10,
+              delay: leaf.delay,
               ease: "linear"
             }}
           >

@@ -62,6 +62,14 @@ const rankColors: Record<number, { bg: string; text: string; glow: string }> = {
   3: { bg: "from-orange-400 to-orange-500", text: "text-orange-900", glow: "shadow-orange-400/50" },
 };
 
+// Pre-generated confetti positions
+const confettiPositions = [
+  { x: -80, y: -120 }, { x: 90, y: -100 }, { x: -60, y: -80 },
+  { x: 70, y: -140 }, { x: -100, y: -60 }, { x: 50, y: -90 },
+  { x: -40, y: -130 }, { x: 85, y: -70 }, { x: -90, y: -110 },
+  { x: 60, y: -150 }, { x: -70, y: -85 }, { x: 95, y: -95 },
+];
+
 export function CelebrityCard({
   id,
   name,
@@ -103,7 +111,7 @@ export function CelebrityCard({
       <AnimatePresence>
         {showConfetti && votedForThis && (
           <>
-            {[...Array(12)].map((_, i) => (
+            {confettiPositions.map((pos, i) => (
               <motion.div
                 key={i}
                 initial={{ 
@@ -115,8 +123,8 @@ export function CelebrityCard({
                 animate={{ 
                   opacity: 0,
                   scale: 1,
-                  x: (Math.random() - 0.5) * 200,
-                  y: (Math.random() - 0.5) * 200 - 100,
+                  x: pos.x,
+                  y: pos.y,
                 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1, ease: "easeOut" }}
@@ -238,7 +246,7 @@ export function CelebrityCard({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-black/0.5 backdrop-blur-md rounded-2xl p-4 border border-white/10"
+              className="bg-black/50 backdrop-blur-md rounded-2xl p-4 border border-white/10"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">

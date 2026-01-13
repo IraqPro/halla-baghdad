@@ -71,26 +71,50 @@ function AnimatedNumber({ value, className }: { value: number; className?: strin
   return <span className={className}>{displayValue.toLocaleString("ar-EG")}</span>;
 }
 
+// Pre-generated particle positions
+const particleData = [
+  { x: 50, y: 100, duration: 7, delay: 1 },
+  { x: 200, y: 300, duration: 8, delay: 2 },
+  { x: 350, y: 150, duration: 6, delay: 0.5 },
+  { x: 500, y: 400, duration: 9, delay: 3 },
+  { x: 150, y: 250, duration: 7.5, delay: 1.5 },
+  { x: 400, y: 50, duration: 6.5, delay: 4 },
+  { x: 600, y: 350, duration: 8.5, delay: 2.5 },
+  { x: 250, y: 500, duration: 7, delay: 0 },
+  { x: 700, y: 200, duration: 9.5, delay: 3.5 },
+  { x: 100, y: 450, duration: 6, delay: 1 },
+  { x: 450, y: 300, duration: 8, delay: 4.5 },
+  { x: 550, y: 100, duration: 7, delay: 2 },
+  { x: 300, y: 400, duration: 9, delay: 0.5 },
+  { x: 650, y: 250, duration: 6.5, delay: 3 },
+  { x: 180, y: 350, duration: 8.5, delay: 1.5 },
+  { x: 520, y: 450, duration: 7.5, delay: 4 },
+  { x: 380, y: 200, duration: 6, delay: 2.5 },
+  { x: 80, y: 300, duration: 9, delay: 0 },
+  { x: 620, y: 400, duration: 7, delay: 3.5 },
+  { x: 280, y: 150, duration: 8, delay: 1 },
+];
+
 // Floating particles component
 function FloatingParticles() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(20)].map((_, i) => (
+      {particleData.map((particle, i) => (
         <motion.div
           key={i}
           className="absolute w-2 h-2 rounded-full bg-primary/20"
           initial={{
-            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+            x: particle.x,
+            y: particle.y,
           }}
           animate={{
             y: [null, -100],
             opacity: [0.2, 0.8, 0.2],
           }}
           transition={{
-            duration: 5 + Math.random() * 5,
+            duration: particle.duration,
             repeat: Infinity,
-            delay: Math.random() * 5,
+            delay: particle.delay,
           }}
         />
       ))}

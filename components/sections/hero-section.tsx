@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Calendar, MapPin, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/common/container";
-import { FADE_IN_UP, FADE_IN_DOWN, SCALE_IN } from "@/lib/constants";
 import type { Event } from "@/lib/types";
 
 interface HeroSectionProps {

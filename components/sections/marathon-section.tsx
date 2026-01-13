@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Users, Route, MapPin, Calendar, Sparkles, Car } from "lucide-react";
+import { Users, Route, MapPin, Calendar, Sparkles } from "lucide-react";
 import { Container } from "@/components/common/container";
 import { SectionHeader } from "@/components/common/section-header";
 import { GlassCard } from "@/components/common/glass-card";
