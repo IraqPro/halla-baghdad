@@ -110,7 +110,7 @@ export function PartnersSection({ mediaPartners }: PartnersSectionProps) {
           className="mt-16 text-center"
         >
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            حظي مراثون هلة بغداد بتغطية إعلامية واسعة عبر القنوات الفضائية، والمواقع الإخبارية، 
+            حظي مراثون هله بغداد بتغطية إعلامية واسعة عبر القنوات الفضائية، والمواقع الإخبارية، 
             ومنصات التواصل الاجتماعي، مع تفاعل كبير من الجمهور والمؤثرين
           </p>
         </motion.div>

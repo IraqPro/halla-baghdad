@@ -113,7 +113,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { celebrityId, fingerprint, screenResolution, timezone, language } = validation.data;
+    const { 
+      celebrityId, 
+      fingerprint, 
+      screenResolution, 
+      timezone, 
+      language,
+    } = validation.data;
 
     // Hash the fingerprint with IP for extra security
     const hashedFingerprint = hashFingerprint(fingerprint, ip);
@@ -132,23 +138,50 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if this device already voted (using hashed fingerprint)
-    const existingVote = await db
+    // Check if this device already voted using multiple methods:
+    // 1. Browser fingerprint (original)
+    // 2. IP + screen resolution combination (cross-browser)
+    
+    // Check browser fingerprint
+    const existingVoteByFingerprint = await db
       .select()
       .from(votes)
       .where(eq(votes.deviceFingerprint, hashedFingerprint))
       .limit(1);
 
-    if (existingVote.length > 0) {
+    if (existingVoteByFingerprint.length > 0) {
       return NextResponse.json(
         { 
           success: false, 
           error: "لقد قمت بالتصويت مسبقاً. يمكنك التصويت مرة واحدة فقط.",
           alreadyVoted: true,
-          votedFor: existingVote[0].celebrityId,
+          votedFor: existingVoteByFingerprint[0].celebrityId,
         },
         { status: 409 }
       );
+    }
+
+    // Check IP + screen resolution (catches cross-browser attempts from same device)
+    if (screenResolution) {
+      const existingVoteByDevice = await db
+        .select()
+        .from(votes)
+        .where(
+          sql`${votes.ipAddress} = ${ip} AND ${votes.screenResolution} = ${screenResolution}`
+        )
+        .limit(1);
+
+      if (existingVoteByDevice.length > 0) {
+        return NextResponse.json(
+          { 
+            success: false, 
+            error: "تم التصويت من هذا الجهاز مسبقاً. لا يمكن التصويت مرتين.",
+            alreadyVoted: true,
+            votedFor: existingVoteByDevice[0].celebrityId,
+          },
+          { status: 409 }
+        );
+      }
     }
 
     // Insert the vote
@@ -159,8 +192,8 @@ export async function POST(request: NextRequest) {
       deviceFingerprint: hashedFingerprint,
       ipAddress: ip,
       userAgent,
-      screenResolution,
-      timezone,
+      screenResolution: screenResolution || null,
+      timezone: timezone || null,
       language,
     });
 
@@ -194,7 +227,7 @@ export async function POST(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
-    const { fingerprint } = body;
+    const { fingerprint, screenResolution } = body;
 
     if (!fingerprint) {
       return NextResponse.json(
@@ -206,16 +239,44 @@ export async function PUT(request: NextRequest) {
     const ip = getRateLimitKey(request);
     const hashedFingerprint = hashFingerprint(fingerprint, ip);
 
-    const existingVote = await db
+    // Check by browser fingerprint first
+    let existingVote = await db
       .select({ celebrityId: votes.celebrityId })
       .from(votes)
       .where(eq(votes.deviceFingerprint, hashedFingerprint))
       .limit(1);
 
+    if (existingVote.length > 0) {
+      return NextResponse.json({
+        success: true,
+        hasVoted: true,
+        votedFor: existingVote[0].celebrityId,
+      });
+    }
+
+    // Check by IP + screen resolution (cross-browser check)
+    if (screenResolution) {
+      existingVote = await db
+        .select({ celebrityId: votes.celebrityId })
+        .from(votes)
+        .where(
+          sql`${votes.ipAddress} = ${ip} AND ${votes.screenResolution} = ${screenResolution}`
+        )
+        .limit(1);
+
+      if (existingVote.length > 0) {
+        return NextResponse.json({
+          success: true,
+          hasVoted: true,
+          votedFor: existingVote[0].celebrityId,
+        });
+      }
+    }
+
     return NextResponse.json({
       success: true,
-      hasVoted: existingVote.length > 0,
-      votedFor: existingVote[0]?.celebrityId || null,
+      hasVoted: false,
+      votedFor: null,
     });
   } catch (error) {
     console.error("Error checking vote status:", error);

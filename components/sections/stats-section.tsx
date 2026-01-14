@@ -34,23 +34,23 @@ export function StatsSection() {
           variants={STAGGER_CONTAINER}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
+          viewport={{ once: true, margin: "0px" }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12"
         >
           {STATS.map((stat, index) => (
             <motion.div
               key={index}
               variants={FADE_IN_UP}
-              className="text-center"
+              className="text-center min-h-[100px]"
             >
-              <div className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3">
+              <div className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-2 sm:mb-3">
                 <AnimatedCounter
                   value={stat.value}
                   suffix={stat.suffix}
                   duration={2.5}
                 />
               </div>
-              <p className="text-sm sm:text-base opacity-90">{stat.label}</p>
+              <p className="text-xs sm:text-base opacity-90 leading-tight">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>

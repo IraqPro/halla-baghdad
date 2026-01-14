@@ -17,11 +17,16 @@ import {
   Crown,
   Flame,
   TrendingUp,
-  Timer
+  Timer,
+  Search,
+  Filter,
+  X,
+  SlidersHorizontal
 } from "lucide-react";
 import { Container } from "@/components/common/container";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { CelebrityCard } from "./celebrity-card";
 import { CelebritySkeletonGrid } from "./celebrity-skeleton";
 import { useFingerprint } from "@/lib/hooks/use-fingerprint";
@@ -95,6 +100,16 @@ const particleData = [
   { x: 280, y: 150, duration: 8, delay: 1 },
 ];
 
+// Category definitions
+const categories = [
+  { value: "all", label: "الكل", icon: "🎯" },
+  { value: "صانع محتوى", label: "صانع محتوى", icon: "📱" },
+  { value: "فنان", label: "فنان", icon: "🎨" },
+  { value: "رياضي", label: "رياضي", icon: "⚽" },
+  { value: "إعلامي", label: "إعلامي", icon: "📺" },
+  { value: "أخرى", label: "أخرى", icon: "✨" },
+];
+
 // Floating particles component
 function FloatingParticles() {
   return (
@@ -131,8 +146,21 @@ export function VotingPage() {
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
+  
+  // Search and filter state
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [showFilters, setShowFilters] = useState(false);
 
   const { deviceInfo, isLoading: isFingerprintLoading } = useFingerprint();
+  
+  // Filter celebrities based on search and category
+  const filteredCelebrities = celebrities.filter((celebrity) => {
+    const matchesSearch = celebrity.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         celebrity.description.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === "all" || celebrity.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   // Fetch celebrities
   const fetchCelebrities = useCallback(async () => {
@@ -162,7 +190,10 @@ export function VotingPage() {
       const response = await fetch("/api/vote", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fingerprint: deviceInfo.fingerprint }),
+        body: JSON.stringify({
+          fingerprint: deviceInfo.fingerprint,
+          screenResolution: deviceInfo.screenResolution,
+        }),
       });
 
       const data = await response.json();
@@ -242,13 +273,13 @@ export function VotingPage() {
               <Link href="/" className="flex items-center gap-3">
                 <Image
                   src="/hala.png"
-                  alt="هلة بغداد"
+                  alt="هله بغداد"
                   width={40}
                   height={40}
                   className="h-10 w-10 object-contain"
                 />
                 <div>
-                  <h1 className="font-bold text-lg">هلة بغداد</h1>
+                  <h1 className="font-bold text-lg">هله بغداد</h1>
                   <p className="text-xs text-muted-foreground">التصويت</p>
                 </div>
               </Link>
@@ -287,14 +318,14 @@ export function VotingPage() {
               <motion.div whileHover={{ rotate: 10 }}>
                 <Image
                   src="/hala.png"
-                  alt="هلة بغداد"
+                  alt="هله بغداد"
                   width={40}
                   height={40}
                   className="h-10 w-10 object-contain"
                 />
               </motion.div>
               <div>
-                <h1 className="font-bold text-lg group-hover:text-primary transition-colors">هلة بغداد</h1>
+                <h1 className="font-bold text-lg group-hover:text-primary transition-colors">هله بغداد</h1>
                 <p className="text-xs text-muted-foreground">مسابقة التصويت</p>
               </div>
             </Link>
@@ -525,22 +556,193 @@ export function VotingPage() {
         )}
       </Container>
 
+      {/* Search & Filters Section */}
+      <section className="pb-8">
+        <Container>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-4"
+          >
+            {/* Search Bar */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="relative flex-1">
+                <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="ابحث عن مرشح..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pr-12 h-12 rounded-xl bg-card/80 backdrop-blur-sm border-border/50 text-base"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+              
+              {/* Filter Toggle Button */}
+              <Button
+                variant={showFilters ? "default" : "outline"}
+                onClick={() => setShowFilters(!showFilters)}
+                className="h-12 px-6 rounded-xl gap-2"
+              >
+                <SlidersHorizontal className="w-5 h-5" />
+                <span className="hidden sm:inline">التصنيفات</span>
+                {selectedCategory !== "all" && (
+                  <Badge variant="secondary" className="mr-1 rounded-full">
+                    1
+                  </Badge>
+                )}
+              </Button>
+            </div>
+
+            {/* Category Filters */}
+            <AnimatePresence>
+              {showFilters && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex flex-wrap gap-2 p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50">
+                    <div className="w-full flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                      <Filter className="w-4 h-4" />
+                      <span>تصفية حسب التصنيف:</span>
+                    </div>
+                    {categories.map((category) => (
+                      <motion.button
+                        key={category.value}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setSelectedCategory(category.value)}
+                        className={`
+                          flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all
+                          ${selectedCategory === category.value
+                            ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                            : "bg-muted/50 text-foreground hover:bg-muted"
+                          }
+                        `}
+                      >
+                        <span>{category.icon}</span>
+                        <span>{category.label}</span>
+                      </motion.button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Active Filters Display */}
+            {(searchQuery || selectedCategory !== "all") && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex items-center gap-2 flex-wrap"
+              >
+                <span className="text-sm text-muted-foreground">الفلاتر النشطة:</span>
+                
+                {searchQuery && (
+                  <Badge variant="secondary" className="gap-1 pr-1 rounded-full">
+                    بحث: {searchQuery}
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="w-5 h-5 rounded-full bg-muted-foreground/20 flex items-center justify-center hover:bg-muted-foreground/30"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                )}
+                
+                {selectedCategory !== "all" && (
+                  <Badge variant="secondary" className="gap-1 pr-1 rounded-full">
+                    {categories.find(c => c.value === selectedCategory)?.icon}{" "}
+                    {categories.find(c => c.value === selectedCategory)?.label}
+                    <button
+                      onClick={() => setSelectedCategory("all")}
+                      className="w-5 h-5 rounded-full bg-muted-foreground/20 flex items-center justify-center hover:bg-muted-foreground/30"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                )}
+                
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setSearchQuery("");
+                    setSelectedCategory("all");
+                  }}
+                  className="h-7 text-xs rounded-full"
+                >
+                  مسح الكل
+                </Button>
+              </motion.div>
+            )}
+
+            {/* Results Count */}
+            <div className="flex items-center justify-between">
+              <p className="text-sm text-muted-foreground">
+                {filteredCelebrities.length === celebrities.length ? (
+                  <>عرض جميع المرشحين ({celebrities.length})</>
+                ) : (
+                  <>
+                    عرض {filteredCelebrities.length} من {celebrities.length} مرشح
+                  </>
+                )}
+              </p>
+            </div>
+          </motion.div>
+        </Container>
+      </section>
+
       {/* Celebrities Grid */}
       <section className="pb-24">
         <Container>
-          {celebrities.length === 0 ? (
+          {filteredCelebrities.length === 0 ? (
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-center py-20 px-8 rounded-3xl bg-card/50 backdrop-blur-sm border border-border/50"
             >
-              <Vote className="w-16 h-16 text-muted-foreground/50 mx-auto mb-4" />
-              <p className="text-xl text-muted-foreground font-medium">
-                لا يوجد مرشحون حالياً
-              </p>
-              <p className="text-muted-foreground/70 mt-2">
-                سيتم إضافة المرشحين قريباً
-              </p>
+              {celebrities.length === 0 ? (
+                <>
+                  <Vote className="w-16 h-16 text-muted-foreground/50 mx-auto mb-4" />
+                  <p className="text-xl text-muted-foreground font-medium">
+                    لا يوجد مرشحون حالياً
+                  </p>
+                  <p className="text-muted-foreground/70 mt-2">
+                    سيتم إضافة المرشحين قريباً
+                  </p>
+                </>
+              ) : (
+                <>
+                  <Search className="w-16 h-16 text-muted-foreground/50 mx-auto mb-4" />
+                  <p className="text-xl text-muted-foreground font-medium">
+                    لا توجد نتائج
+                  </p>
+                  <p className="text-muted-foreground/70 mt-2">
+                    جرب تغيير معايير البحث أو التصنيف
+                  </p>
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSelectedCategory("all");
+                    }}
+                    className="mt-4 rounded-full"
+                  >
+                    مسح الفلاتر
+                  </Button>
+                </>
+              )}
             </motion.div>
           ) : (
             <>
@@ -568,18 +770,22 @@ export function VotingPage() {
 
               {/* Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {celebrities.map((celebrity, index) => (
-                  <CelebrityCard
-                    key={celebrity.id}
-                    {...celebrity}
-                    totalVotes={totalVotes}
-                    hasVoted={!!votedFor}
-                    votedForThis={votedFor === celebrity.id}
-                    onVote={handleVote}
-                    isVoting={isVoting}
-                    rank={index + 1}
-                  />
-                ))}
+                {filteredCelebrities.map((celebrity) => {
+                  // Calculate rank based on original sorted list
+                  const originalRank = celebrities.findIndex(c => c.id === celebrity.id) + 1;
+                  return (
+                    <CelebrityCard
+                      key={celebrity.id}
+                      {...celebrity}
+                      totalVotes={totalVotes}
+                      hasVoted={!!votedFor}
+                      votedForThis={votedFor === celebrity.id}
+                      onVote={handleVote}
+                      isVoting={isVoting}
+                      rank={originalRank}
+                    />
+                  );
+                })}
               </div>
             </>
           )}
@@ -613,15 +819,15 @@ export function VotingPage() {
             <div className="flex items-center justify-center gap-2">
               <Image
                 src="/hala.png"
-                alt="هلة بغداد"
+                alt="هله بغداد"
                 width={24}
                 height={24}
                 className="h-6 w-6 object-contain"
               />
-              <span className="font-bold">هلة بغداد</span>
+              <span className="font-bold">هله بغداد</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              © ٢٠٢٦ هلة بغداد. جميع الحقوق محفوظة.
+              © ٢٠٢٦ هله بغداد. جميع الحقوق محفوظة.
             </p>
             <p className="text-xs text-muted-foreground/70">
               🔒 يمكن لكل جهاز التصويت مرة واحدة فقط لضمان نزاهة المسابقة

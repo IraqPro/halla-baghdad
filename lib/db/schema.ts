@@ -6,7 +6,26 @@ import {
   text,
   jsonb,
   boolean,
+  pgEnum,
 } from "drizzle-orm/pg-core";
+
+// Admin role enum
+export const adminRoleEnum = pgEnum("admin_role", ["super_admin", "admin", "moderator"]);
+
+// Admins table - for authentication
+export const admins = pgTable("admins", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  username: varchar("username", { length: 50 }).notNull().unique(),
+  passwordHash: varchar("password_hash", { length: 255 }).notNull(),
+  displayName: varchar("display_name", { length: 100 }).notNull(),
+  role: adminRoleEnum("role").default("admin").notNull(),
+  isActive: boolean("is_active").default(true).notNull(),
+  lastLoginAt: timestamp("last_login_at"),
+  loginAttempts: varchar("login_attempts", { length: 10 }).default("0"),
+  lockedUntil: timestamp("locked_until"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
 
 // Participants table - marathon participants
 export const participants = pgTable("participants", {
@@ -63,3 +82,6 @@ export type NewCelebrity = typeof celebrities.$inferInsert;
 
 export type Vote = typeof votes.$inferSelect;
 export type NewVote = typeof votes.$inferInsert;
+
+export type Admin = typeof admins.$inferSelect;
+export type NewAdmin = typeof admins.$inferInsert;

@@ -46,13 +46,13 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-3 mb-6">
               <Image
                 src="/hala.png"
-                alt="هلة بغداد"
+                alt="هله بغداد"
                 width={56}
                 height={56}
                 className="h-14 w-14 object-contain brightness-0 invert"
               />
               <div>
-                <h3 className="font-bold text-xl">هلة بغداد</h3>
+                <h3 className="font-bold text-xl">هله بغداد</h3>
                 <p className="text-sm text-background/70">يوم النظافة العام</p>
               </div>
             </Link>
@@ -118,7 +118,7 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <Calendar className="w-5 h-5 text-primary mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-medium">٦ - ٧ فبراير ٢٠٢٦</p>
+                  <p className="font-medium">١٣- ١٤ شباط ٢٠٢٦</p>
                   <p className="text-sm text-background/60">بداية عطلة نصف السنة</p>
                 </div>
               </li>
@@ -157,7 +157,7 @@ export function Footer() {
             <div className="mt-8">
               <p className="text-sm text-background/50 mb-3">بتنظيم من:</p>
               <div className="flex flex-wrap gap-2">
-                {["هلة بغداد", "أمانة بغداد", "Holo Mix"].map((org) => (
+                {["هله بغداد", "أمانة بغداد", "Holo Mix"].map((org) => (
                   <span
                     key={org}
                     className="px-3 py-1 rounded-full bg-background/10 text-xs"
@@ -182,7 +182,7 @@ export function Footer() {
           className="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right"
         >
           <p className="text-sm text-background/60">
-            © {currentYear} هلة بغداد. جميع الحقوق محفوظة.
+            © {currentYear} هله بغداد. جميع الحقوق محفوظة.
           </p>
           <p className="text-sm text-background/60">
             صُنع بـ 💚 في بغداد

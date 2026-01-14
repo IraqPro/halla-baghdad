@@ -28,7 +28,7 @@
     },
     "organizers": [
       {
-        "name": "هلة بغداد",
+        "name": "هله بغداد",
         "english": "Hala Baghdad"
       },
       {
@@ -65,17 +65,17 @@
     {
       "id": 2,
       "name": {
-        "arabic": "ماراثون هلة بغداد - النسخة الثالثة",
+        "arabic": "ماراثون هله بغداد - النسخة الثالثة",
         "english": "Hala Baghdad Marathon - Third Edition"
       },
       "description": {
-        "arabic": "مراثون هلة بغداد هو فعالية رياضية مجتمعية تهدف إلى تعزيز ثقافة الرياضة ونمط الحياة الصحي، وترسيخ صورة بغداد كمدينة نابضة بالحياة وقادرة على تنظيم فعاليات نوعية بمعايير حديثة",
+        "arabic": "مراثون هله بغداد هو فعالية رياضية مجتمعية تهدف إلى تعزيز ثقافة الرياضة ونمط الحياة الصحي، وترسيخ صورة بغداد كمدينة نابضة بالحياة وقادرة على تنظيم فعاليات نوعية بمعايير حديثة",
         "english": "Hala Baghdad Marathon is a community sports event aimed at promoting sports culture and healthy lifestyle, establishing Baghdad's image as a vibrant city capable of organizing quality events with modern standards"
       },
       "type": "marathon",
       "edition": 3,
       "features_2026": {
-        "arabic": "ستكون هذه النسخة مختلفة عن النسخ السابقة حيث ستكون من أجمل نسخ ماراثون هلة بغداد ليس مجرد جري ستكون هناك عوائق وتحديات على طول المسار وستكون حفلة بحضور فنان عراقي كبير لتكريم الفائزين",
+        "arabic": "ستكون هذه النسخة مختلفة عن النسخ السابقة حيث ستكون من أجمل نسخ ماراثون هله بغداد ليس مجرد جري ستكون هناك عوائق وتحديات على طول المسار وستكون حفلة بحضور فنان عراقي كبير لتكريم الفائزين",
         "english": "This edition will be different from previous editions, one of the most beautiful Hala Baghdad marathon editions, not just running - there will be obstacles and challenges along the course, with a celebration featuring a prominent Iraqi artist to honor the winners"
       },
       "prizes": {
@@ -116,7 +116,7 @@
       ],
       "media_coverage": {
         "description": {
-          "arabic": "حظي مراثون هلة بغداد بتغطية إعلامية واسعة عبر القنوات الفضائية، والمواقع الإخبارية، ومنصات التواصل الاجتماعي، مع تفاعل كبير من الجمهور والمؤثرين",
+          "arabic": "حظي مراثون هله بغداد بتغطية إعلامية واسعة عبر القنوات الفضائية، والمواقع الإخبارية، ومنصات التواصل الاجتماعي، مع تفاعل كبير من الجمهور والمؤثرين",
           "english": "Hala Baghdad Marathon received wide media coverage through satellite channels, news websites, and social media platforms, with great interaction from the public and influencers"
         }
       }
@@ -124,7 +124,7 @@
     {
       "id": 3,
       "name": {
-        "arabic": "بطولة هلة بغداد الكيوكوشن كاي",
+        "arabic": "بطولة هله بغداد الكيوكوشن كاي",
         "english": "Hala Baghdad Kyokushin Kai Championship"
       },
       "description": {
@@ -269,7 +269,7 @@
     "parsed_date": "2026-01-10",
     "brands": [
       {
-        "name": "هلة بغداد",
+        "name": "هله بغداد",
         "english": "Hala Baghdad",
         "type": "event_brand"
       },

@@ -77,13 +77,30 @@ export function HeroSection({ event }: HeroSectionProps) {
               duration: 0.8, 
               ease: [0.16, 1, 0.3, 1],
             }}
+            className="flex items-center justify-center"
           >
             <Image
-              src="/hala.png"
-              alt="هلة بغداد"
+              src="/holo.png"
+              alt="هله بغداد"
               width={140}
               height={140}
               className="h-28 w-28 sm:h-36 sm:w-36 object-contain drop-shadow-2xl"
+              priority
+            />
+                        <Image
+              src="/hala.png"
+              alt="هله بغداد"
+              width={140}
+              height={140}
+              className="h-28 w-28 sm:h-36 sm:w-36 object-contain drop-shadow-2xl"
+              priority
+            />
+                        <Image
+              src="/amana.png"
+              alt="هله بغداد"
+              width={140}
+              height={140}
+              className="h-24 w-24 sm:h-28 sm:w-28 object-contain drop-shadow-2xl"
               priority
             />
           </motion.div>
@@ -154,7 +171,7 @@ export function HeroSection({ event }: HeroSectionProps) {
               className="flex items-center gap-2 px-4 py-2 rounded-full bg-card/80 backdrop-blur-sm border border-border shadow-sm"
             >
               <Calendar className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium">٦ - ٧ فبراير ٢٠٢٦</span>
+              <span className="text-sm font-medium">١٣- ١٤ شباط ٢٠٢٦</span>
             </motion.div>
             <motion.div 
               initial={{ opacity: 0, x: -20 }}

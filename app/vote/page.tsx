@@ -2,7 +2,7 @@ import { VotingPage } from "@/components/voting";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "التصويت | مسابقة أفضل صانع محتوى ٢٠٢٥ | هلة بغداد",
+  title: "التصويت | مسابقة أفضل صانع محتوى ٢٠٢٥ | هله بغداد",
   description:
     "صوّت لصانع المحتوى المفضل لديك في مسابقة أفضل صانع محتوى اجتماعي وتوعوي لسنة ٢٠٢٥",
 };

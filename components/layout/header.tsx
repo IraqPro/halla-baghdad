@@ -65,7 +65,7 @@ export function Header() {
             >
               <Image
                 src="/hala.png"
-                alt="هلة بغداد"
+                alt="هله بغداد"
                 width={48}
                 height={48}
                 className="h-10 w-10 lg:h-12 lg:w-12 object-contain"
@@ -73,7 +73,7 @@ export function Header() {
             </motion.div>
             <div className="hidden sm:block">
               <h1 className="font-bold text-lg lg:text-xl text-foreground">
-                هلة بغداد
+                هله بغداد
               </h1>
               <p className="text-xs text-muted-foreground">
                 يوم النظافة العام ٢٠٢٦
@@ -137,13 +137,13 @@ export function Header() {
                 <div className="flex items-center gap-3 pb-6 border-b">
                   <Image
                     src="/hala.png"
-                    alt="هلة بغداد"
+                    alt="هله بغداد"
                     width={48}
                     height={48}
                     className="h-12 w-12 object-contain"
                   />
                   <div>
-                    <h2 className="font-bold text-lg">هلة بغداد</h2>
+                    <h2 className="font-bold text-lg">هله بغداد</h2>
                     <p className="text-xs text-muted-foreground">
                       يوم النظافة العام ٢٠٢٦
                     </p>

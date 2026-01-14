@@ -45,7 +45,8 @@ export const healthConditionOptions = [
 
 // Iraqi cities for residence
 export const iraqiCities = [
-  "بغداد",
+  "بغداد - الكرخ",
+  "بغداد - الرصافة",
   "البصرة",
   "الموصل",
   "أربيل",

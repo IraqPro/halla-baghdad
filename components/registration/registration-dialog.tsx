@@ -185,7 +185,7 @@ export function RegistrationDialog({ trigger }: RegistrationDialogProps) {
                 تم التسجيل بنجاح! 🎉
               </h2>
               <p className="text-muted-foreground mb-6">
-                مرحباً {success.name}، تم تسجيلك في ماراثون هلة بغداد
+                مرحباً {success.name}، تم تسجيلك في ماراثون هله بغداد
               </p>
 
               {/* QR Code */}
@@ -250,7 +250,7 @@ export function RegistrationDialog({ trigger }: RegistrationDialogProps) {
                   التسجيل في الماراثون
                 </DialogTitle>
                 <DialogDescription className="text-right">
-                  سجّل الآن للمشاركة في ماراثون هلة بغداد - النسخة الثالثة
+                  سجّل الآن للمشاركة في ماراثون هله بغداد - النسخة الثالثة
                 </DialogDescription>
               </DialogHeader>
 

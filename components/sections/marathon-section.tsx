@@ -33,7 +33,7 @@ export function MarathonSection({ marathon }: MarathonSectionProps) {
 
       <Container className="relative">
         <SectionHeader
-          title="ماراثون هلة بغداد"
+          title="ماراثون هله بغداد"
           subtitle="النسخة الثالثة من أكبر ماراثون مجتمعي في العراق"
         />
 
@@ -101,7 +101,7 @@ export function MarathonSection({ marathon }: MarathonSectionProps) {
 
             <GlassCard className="text-center">
               <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
-              <p className="text-lg font-bold text-foreground mb-1">٦ فبراير</p>
+              <p className="text-lg font-bold text-foreground mb-1">٦ شباط</p>
               <p className="text-sm text-muted-foreground">٢٠٢٦</p>
             </GlassCard>
           </motion.div>
