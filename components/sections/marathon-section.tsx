@@ -101,7 +101,7 @@ export function MarathonSection({ marathon }: MarathonSectionProps) {
 
             <GlassCard className="text-center">
               <Calendar className="w-8 h-8 text-primary mx-auto mb-3" />
-              <p className="text-lg font-bold text-foreground mb-1">٦ شباط</p>
+              <p className="text-lg font-bold text-foreground mb-1">١٣ شباط</p>
               <p className="text-sm text-muted-foreground">٢٠٢٦</p>
             </GlassCard>
           </motion.div>
@@ -206,3 +206,4 @@ export function MarathonSection({ marathon }: MarathonSectionProps) {
     </section>
   );
 }
+
