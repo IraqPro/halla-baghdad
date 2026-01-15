@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { db } from "@/lib/db";
-import { celebrities, SocialLink } from "@/lib/db/schema";
+import { celebrities, votes, SocialLink } from "@/lib/db/schema";
 import { protectApiRoute } from "@/lib/auth/middleware";
 import { desc, eq, sql } from "drizzle-orm";
 
@@ -241,22 +241,34 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    // Delete celebrity
-    const [deletedCelebrity] = await db
-      .delete(celebrities)
-      .where(eq(celebrities.id, id))
-      .returning();
+    // Check if celebrity exists first
+    const [existingCelebrity] = await db
+      .select()
+      .from(celebrities)
+      .where(eq(celebrities.id, id));
 
-    if (!deletedCelebrity) {
+    if (!existingCelebrity) {
       return NextResponse.json(
         { error: "المشهور غير موجود" },
         { status: 404 }
       );
     }
 
+    // Delete all votes associated with this celebrity first (to avoid foreign key constraint)
+    await db.delete(votes).where(eq(votes.celebrityId, id));
+
+    // Now delete the celebrity
+    const [deletedCelebrity] = await db
+      .delete(celebrities)
+      .where(eq(celebrities.id, id))
+      .returning();
+
     return NextResponse.json({
       success: true,
       message: "تم حذف المشهور بنجاح",
+      data: {
+        celebrity: deletedCelebrity.name,
+      },
     });
   } catch (error) {
     console.error("Delete celebrity error:", error);
