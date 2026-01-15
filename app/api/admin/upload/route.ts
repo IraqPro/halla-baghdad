@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { protectApiRoute } from "@/lib/auth/middleware";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
-import { existsSync } from "fs";
+import { put } from "@vercel/blob";
 
 // Allowed image types
 const ALLOWED_TYPES = [
@@ -60,13 +58,13 @@ function validateImageMagicBytes(buffer: Buffer): { valid: boolean; type: string
   return { valid: false, type: null };
 }
 
-// Sanitize filename to prevent path traversal
+// Sanitize filename to prevent issues
 function sanitizeFilename(filename: string): string {
-  // Remove path separators and null bytes
   return filename
     .replace(/[/\\:*?"<>|]/g, "")
     .replace(/\x00/g, "")
-    .replace(/\.\./g, "");
+    .replace(/\.\./g, "")
+    .replace(/\s+/g, "-");
 }
 
 // Generate unique filename
@@ -75,9 +73,9 @@ function generateUniqueFilename(originalName: string, detectedType: string): str
   const random = Math.random().toString(36).substring(2, 8);
   const sanitized = sanitizeFilename(originalName);
   const nameWithoutExt = sanitized.replace(/\.[^/.]+$/, "");
-  const safeName = nameWithoutExt.substring(0, 50); // Limit name length
+  const safeName = nameWithoutExt.substring(0, 50);
   
-  return `${safeName}-${timestamp}-${random}.${detectedType}`;
+  return `celebrities/${safeName}-${timestamp}-${random}.${detectedType}`;
 }
 
 export async function POST(request: NextRequest) {
@@ -139,32 +137,35 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Ensure upload directory exists
-    const uploadDir = path.join(process.cwd(), "public", "celebrities");
-    
-    if (!existsSync(uploadDir)) {
-      await mkdir(uploadDir, { recursive: true });
-    }
-
     // Generate unique filename
     const filename = generateUniqueFilename(file.name, magicValidation.type);
-    const filepath = path.join(uploadDir, filename);
 
-    // Write file
-    await writeFile(filepath, buffer);
-
-    // Return the public URL
-    const publicUrl = `/celebrities/${filename}`;
+    // Upload to Vercel Blob
+    const blob = await put(filename, buffer, {
+      access: "public",
+      contentType: `image/${magicValidation.type}`,
+    });
 
     return NextResponse.json({
       success: true,
-      url: publicUrl,
-      filename,
+      url: blob.url,
+      filename: filename,
       size: file.size,
       type: magicValidation.type,
     });
   } catch (error) {
     console.error("Upload error:", error);
+    
+    // Check if it's a Vercel Blob configuration error
+    if (error instanceof Error && error.message.includes("BLOB")) {
+      return NextResponse.json(
+        { 
+          error: "خطأ في إعدادات التخزين",
+          details: "تأكد من إعداد BLOB_READ_WRITE_TOKEN" 
+        },
+        { status: 500 }
+      );
+    }
     
     return NextResponse.json(
       { error: "حدث خطأ في رفع الصورة" },
