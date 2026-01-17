@@ -113,6 +113,8 @@ const ALLOWED_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".gif"];
 const categories = [
   { value: "صانع محتوى", label: "صانع محتوى" },
   { value: "فنان", label: "فنان" },
+  { value: "بيج", label: "بيج" },
+  { value: "صفحة عامة", label: "صفحة عامة" },
   { value: "رياضي", label: "رياضي" },
   { value: "إعلامي", label: "إعلامي" },
   { value: "أخرى", label: "أخرى" },
@@ -1023,3 +1025,4 @@ export default function CelebritiesPage() {
     </div>
   );
 }
+
