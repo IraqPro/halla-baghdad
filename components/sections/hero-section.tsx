@@ -95,14 +95,6 @@ export function HeroSection({ event }: HeroSectionProps) {
               className="h-28 w-28 sm:h-36 sm:w-36 object-contain drop-shadow-2xl"
               priority
             />
-                        <Image
-              src="/amana.png"
-              alt="هله بغداد"
-              width={140}
-              height={140}
-              className="h-24 w-24 sm:h-28 sm:w-28 object-contain drop-shadow-2xl"
-              priority
-            />
           </motion.div>
 
           {/* Main Title - Appears with Logo */}
@@ -247,3 +239,4 @@ export function HeroSection({ event }: HeroSectionProps) {
     </section>
   );
 }
+
